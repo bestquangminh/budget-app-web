@@ -1,26 +1,160 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * BudgetBuddy theme — "Fresh Mint"
+ * Source of truth: the brand board (Option A + Talking Coin logo).
+ * shadcn components read the semantic tokens below (primary, muted, border…);
+ * brand-only extras (coral, mint-light, success) are added at the end.
+ */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-jakarta);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-jakarta);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Brand extras: bg-coral, text-mint-light, bg-success-muted, text-success… */
+  --color-coral: var(--coral);
+  --color-mint-light: var(--mint-light);
+  --color-success: var(--success);
+  --color-success-muted: var(--success-muted);
+  --color-destructive-muted: var(--destructive-muted);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: #ffffff;
+  --foreground: #10231d; /* Ink */
+  --card: #ffffff;
+  --card-foreground: #10231d;
+  --popover: #ffffff;
+  --popover-foreground: #10231d;
+  --primary: #0b7a5c; /* Mint — buttons, links, focus */
+  --primary-foreground: #ffffff;
+  --secondary: #eef7f3; /* Surface — selected tiles, soft panels */
+  --secondary-foreground: #075c45;
+  --muted: #eef7f3;
+  --muted-foreground: #4a5c55; /* Subtext, hints */
+  --accent: #eef7f3;
+  --accent-foreground: #10231d;
+  --destructive: #b42318;
+  --border: #dce7e2;
+  --input: #c9d6d0; /* Input borders */
+  --ring: #0b7a5c;
+  --chart-1: #0b7a5c;
+  --chart-2: #3ccb9a;
+  --chart-3: #ff8a65;
+  --chart-4: #4a5c55;
+  --chart-5: #a7e3cc;
+  --radius: 0.75rem; /* 12px inputs; rounded-xl ≈ 17px */
+  --sidebar: #f6fbf9;
+  --sidebar-foreground: #10231d;
+  --sidebar-primary: #0b7a5c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eef7f3;
+  --sidebar-accent-foreground: #10231d;
+  --sidebar-border: #dce7e2;
+  --sidebar-ring: #0b7a5c;
+
+  --coral: #ff8a65; /* AI spark — decoration only, never text on white */
+  --mint-light: #3ccb9a;
+  --success: #05603a;
+  --success-muted: #ecfdf3;
+  --destructive-muted: #fef3f2;
+}
+
+.dark {
+  --background: #0b1a15;
+  --foreground: #e8f2ee;
+  --card: #10231d;
+  --card-foreground: #e8f2ee;
+  --popover: #10231d;
+  --popover-foreground: #e8f2ee;
+  --primary: #3ccb9a;
+  --primary-foreground: #06261c;
+  --secondary: #16332a;
+  --secondary-foreground: #cdebdf;
+  --muted: #16332a;
+  --muted-foreground: #9db5ac;
+  --accent: #1b3d33;
+  --accent-foreground: #e8f2ee;
+  --destructive: #f97066;
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 15%);
+  --ring: #3ccb9a;
+  --chart-1: #3ccb9a;
+  --chart-2: #0b7a5c;
+  --chart-3: #ff8a65;
+  --chart-4: #9db5ac;
+  --chart-5: #a7e3cc;
+  --sidebar: #10231d;
+  --sidebar-foreground: #e8f2ee;
+  --sidebar-primary: #3ccb9a;
+  --sidebar-primary-foreground: #06261c;
+  --sidebar-accent: #1b3d33;
+  --sidebar-accent-foreground: #e8f2ee;
+  --sidebar-border: rgb(255 255 255 / 10%);
+  --sidebar-ring: #3ccb9a;
+
+  --coral: #ff8a65;
+  --mint-light: #3ccb9a;
+  --success: #6ce9a6;
+  --success-muted: #0c3b28;
+  --destructive-muted: #3d1512;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  html {
+    @apply font-sans;
+  }
 }
