@@ -7,7 +7,7 @@ export default function AuthLayout({children}: {children: React.ReactNode}) {
         <>
             <main className="mx-auto flex min-h-dvh w-full max-w-[420px] flex-col px-6 pt-14 pb-8">
                 <Logo/>
-                <div className="mt-5">
+                <div className="mt-3 flex flex-1 flex-col">
                     {children}
                 </div>
             </main>
